@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maroc Authentique — Villages cachés et paysages méconnus</title>
+  <meta name="description" content="Découvrez les villages berbères, les vallées secrètes et les paysages méconnus du Maroc. Réservez une visite authentique et soutenez l'économie locale." />
+
+  <!-- Google Fonts: Playfair Display (serif headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="static/css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== Top decorative stripe ===== -->
+  <div class="top-stripe"></div>
+
+  <!-- ===== Header / Navbar ===== -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#accueil">
+          <span class="brand-mark">▲</span>
+          <span class="brand-text">
+            <span class="brand-title">Maroc Authentique</span>
+            <span class="brand-sub">OFFICE DU TOURISME</span>
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Ouvrir le menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+          <ul class="navbar-nav gap-lg-4">
+            <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+            <li class="nav-item"><a class="nav-link" href="#villages">Villages</a></li>
+            <li class="nav-item"><a class="nav-link" href="#categories">Expériences</a></li>
+            <li class="nav-item"><a class="nav-link" href="#reservation">Réserver</a></li>
+            <li class="nav-item"><a class="nav-link" href="admin.html">Administration</a></li>
+          </ul>
+        </div>
+
+        <div class="d-none d-lg-flex align-items-center gap-3">
+          <a href="login.html" class="nav-link">Connexion</a>
+          <a href="#reservation" class="btn btn-primary-green">Réserver</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section id="accueil" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="eyebrow eyebrow-light">✦ HORS DES SENTIERS BATTUS</span>
+      <h1 class="hero-title">Le Maroc <span class="accent">authentique</span>,<br />loin des foules.</h1>
+      <p class="hero-lead">
+        Découvrez les villages berbères, les vallées secrètes et les paysages méconnus
+        du Royaume — pour soutenir l'économie locale et vivre un Maroc vrai.
+      </p>
+      <div class="hero-actions">
+        <a href="#villages" class="btn btn-amber btn-lg">Explorer les villages</a>
+        <a href="#reservation" class="btn btn-outline-light-cream btn-lg">Réserver une visite</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">LIEUX SECRETS</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">12</span>
+          <span class="stat-label">RÉGIONS</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">ÉCONOMIE LOCALE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Categories ===== -->
+  <section id="categories" class="section section-categories">
+    <div class="container">
+      <div class="text-center section-head">
+        <span class="eyebrow">CATÉGORIES DE TOURISME</span>
+        <h2 class="section-title">Une mosaïque d'expériences</h2>
+        <p class="section-sub">Chaque catégorie met en valeur un visage différent du Maroc rural et oublié.</p>
+      </div>
+
+      <div class="row g-4 mt-2">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="cat-card">
+            <div class="cat-icon">▲</div>
+            <h3 class="cat-title">Montagne</h3>
+            <p class="cat-text">Vallées du Haut Atlas et villages perchés.</p>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="cat-card">
+            <div class="cat-icon">◎</div>
+            <h3 class="cat-title">Désert</h3>
+            <p class="cat-text">Dunes secrètes loin de Merzouga.</p>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="cat-card">
+            <div class="cat-icon">⚘</div>
+            <h3 class="cat-title">Culturel</h3>
+            <p class="cat-text">Moussems berbères et traditions vivantes.</p>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="cat-card">
+            <div class="cat-icon">❉</div>
+            <h3 class="cat-title">Naturel</h3>
+            <p class="cat-text">Cascades, palmeraies, parcs nationaux.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Villages ===== -->
+  <section id="villages" class="section section-villages">
+    <div class="container">
+      <div class="villages-head">
+        <div>
+          <span class="eyebrow">À DÉCOUVRIR</span>
+          <h2 class="section-title">Villages &amp; paysages cachés</h2>
+        </div>
+        <div class="villages-filters">
+          <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un lieu..." aria-label="Rechercher un lieu" />
+          <select id="typeFilter" class="form-select" aria-label="Filtrer par type">
+            <option value="">Tous les types</option>
+            <option value="Montagne">Montagne</option>
+            <option value="Désert">Désert</option>
+            <option value="Culturel">Culturel</option>
+            <option value="Naturel">Naturel</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="villagesGrid" class="row g-4 mt-1">
+        <!-- Cards injected by JavaScript -->
+      </div>
+
+      <p id="noResults" class="no-results text-center" hidden>Aucun lieu ne correspond à votre recherche.</p>
+    </div>
+  </section>
+
+  <!-- ===== Reservation ===== -->
+  <section id="reservation" class="section section-reservation">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-12 col-lg-5">
+          <span class="eyebrow">RÉSERVATION</span>
+          <h2 class="section-title">Réservez votre visite authentique</h2>
+          <p class="section-sub">
+            Une équipe locale vous accompagne dans chaque village. Vos réservations
+            soutiennent directement les coopératives et familles d'accueil.
+          </p>
+          <ul class="perks-list">
+            <li>Guides berbères certifiés</li>
+            <li>Hébergement chez l'habitant</li>
+            <li>100% des bénéfices reversés localement</li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-lg-7">
+          <div class="reservation-card">
+            <h3 class="reservation-card-title">📅 Réservation d'une visite</h3>
+
+            <form id="reservationForm" novalidate>
+              <div class="mb-3">
+                <label class="form-label">Type de visiteur</label>
+                <div class="d-flex gap-4">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="visitorType" id="typeNational" value="National" checked />
+                    <label class="form-check-label" for="typeNational">National</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="visitorType" id="typeForeign" value="Étranger" />
+                    <label class="form-check-label" for="typeForeign">Étranger</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label for="name" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="vous@email.com" required />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="date" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="date" name="date" required />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="place" class="form-label">Lieu</label>
+                  <select id="place" name="place" class="form-select" required>
+                    <option value="">Choisir un lieu</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary-green w-100 mt-4">Réserver ma visite</button>
+
+              <p id="formMessage" class="form-message" role="status" hidden></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-5">
+          <h4 class="footer-brand">Maroc Authentique</h4>
+          <p class="footer-text">Découvrez les villages cachés et les paysages méconnus du Royaume.</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h5 class="footer-heading">Explorer</h5>
+          <ul class="footer-list">
+            <li><a href="#villages">Villages cachés</a></li>
+            <li><a href="#categories">Expériences locales</a></li>
+            <li><a href="#reservation">Réserver une visite</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-4">
+          <h5 class="footer-heading">Office</h5>
+          <ul class="footer-list">
+            <li>contact@maroc-authentique.ma</li>
+            <li>+212 5 37 00 00 00</li>
+            <li>Rabat, Maroc</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">Le Maroc, une destination à vivre · © 2026</div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="static/js/script.js"></script>
+</body>
+</html>
