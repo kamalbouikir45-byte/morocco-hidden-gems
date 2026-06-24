@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr" class="admin-html">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administration — Office du Tourisme Marocain</title>
+    <meta
+      name="description"
+      content="Tableau de bord d'administration de Maroc Authentique : gestion des attractions, réservations et statistiques."
+    />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- App styles -->
+    <link rel="stylesheet" href="static/css/styles.css" />
+  </head>
+  <body class="admin-body">
+    <div class="top-stripe"></div>
+
+    <div class="admin-layout">
+      <!-- ===== Sidebar ===== -->
+      <aside class="admin-sidebar" id="adminSidebar">
+        <div class="admin-brand">
+          <span class="brand-mark"><i class="bi bi-buildings"></i></span>
+          <span class="admin-brand-text">Admin</span>
+        </div>
+        <nav class="admin-nav">
+          <a href="#section-accueil" class="admin-nav-link active" data-nav>
+            <i class="bi bi-house-door"></i><span>Accueil</span>
+          </a>
+          <a href="#section-attractions" class="admin-nav-link" data-nav>
+            <i class="bi bi-geo-alt"></i><span>Attractions</span>
+          </a>
+          <a href="#section-reservations" class="admin-nav-link" data-nav>
+            <i class="bi bi-calendar-check"></i><span>Réservations</span>
+          </a>
+          <a href="#section-stats" class="admin-nav-link" data-nav>
+            <i class="bi bi-bar-chart"></i><span>Statistiques</span>
+          </a>
+        </nav>
+        <a href="index.html" class="admin-public-link">
+          <i class="bi bi-arrow-left"></i> Site public
+        </a>
+      </aside>
+
+      <!-- ===== Main ===== -->
+      <main class="admin-main">
+        <button class="btn admin-menu-toggle d-lg-none" id="menuToggle" aria-label="Menu">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Header -->
+        <header class="admin-header" id="section-accueil">
+          <h1 class="admin-title">Office du Tourisme Marocain</h1>
+          <p class="admin-subtitle">Découvrez la beauté du Maroc</p>
+        </header>
+
+        <!-- Search / filter bar -->
+        <section class="admin-card admin-toolbar">
+          <div class="admin-search">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              id="searchInput"
+              class="form-control"
+              placeholder="Rechercher une attraction..."
+              aria-label="Rechercher une attraction"
+            />
+          </div>
+          <div class="admin-filter">
+            <label for="typeFilter" class="form-label mb-0">Filtre :</label>
+            <select id="typeFilter" class="form-select" aria-label="Filtre par type">
+              <option value="">Tous les types</option>
+              <option value="Montagne">Montagne</option>
+              <option value="Désert">Désert</option>
+              <option value="Culturel">Culturel</option>
+              <option value="Naturel">Naturel</option>
+            </select>
+          </div>
+          <button class="btn btn-primary-green" id="refreshBtn">
+            <i class="bi bi-arrow-clockwise"></i> Actualiser
+          </button>
+        </section>
+
+        <div class="row g-4">
+          <!-- Attractions table -->
+          <div class="col-lg-7" id="section-attractions">
+            <section class="admin-card h-100">
+              <h2 class="admin-card-title">
+                <i class="bi bi-card-list"></i> Liste des attractions
+              </h2>
+              <div class="table-responsive">
+                <table class="table admin-table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Nom</th>
+                      <th>Type</th>
+                      <th>Région</th>
+                      <th>Prix (MAD)</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="attractionsBody">
+                    <tr>
+                      <td colspan="5" class="text-center text-muted py-4">Chargement…</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <!-- Statistics -->
+          <div class="col-lg-5" id="section-stats">
+            <section class="admin-card h-100">
+              <h2 class="admin-card-title"><i class="bi bi-pie-chart"></i> Statistiques</h2>
+              <p class="admin-muted mb-2">Répartition par type d'attractions</p>
+              <canvas id="typeChart" height="170"></canvas>
+              <p class="admin-muted mt-4 mb-2">Réservations par mois</p>
+              <canvas id="monthlyChart" height="170"></canvas>
+            </section>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="admin-actions">
+          <button class="btn btn-primary-green" id="addBtn">
+            <i class="bi bi-plus-lg"></i> Ajouter une attraction
+          </button>
+          <button class="btn btn-amber" id="statsBtn">
+            <i class="bi bi-bar-chart"></i> Statistiques
+          </button>
+          <button class="btn btn-info-blue" id="exportBtn">
+            <i class="bi bi-file-earmark-text"></i> Exporter PDF
+          </button>
+        </div>
+
+        <!-- Reservations + counters -->
+        <div class="row g-4 mt-1" id="section-reservations">
+          <div class="col-lg-7">
+            <section class="admin-card h-100">
+              <h2 class="admin-card-title">
+                <i class="bi bi-calendar-check"></i> Réservations récentes
+              </h2>
+              <div class="table-responsive">
+                <table class="table admin-table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Nom</th>
+                      <th>Lieu</th>
+                      <th>Date</th>
+                      <th>Type</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reservationsBody">
+                    <tr>
+                      <td colspan="5" class="text-center text-muted py-4">Chargement…</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+          <div class="col-lg-5">
+            <div class="row g-4">
+              <div class="col-6 col-lg-12">
+                <div class="admin-card admin-counter">
+                  <i class="bi bi-geo-alt admin-counter-icon"></i>
+                  <span class="admin-counter-label">Total attractions</span>
+                  <span class="admin-counter-num" id="countVillages">0</span>
+                  <span class="admin-muted">attractions enregistrées</span>
+                </div>
+              </div>
+              <div class="col-6 col-lg-12">
+                <div class="admin-card admin-counter">
+                  <i class="bi bi-calendar2-check admin-counter-icon"></i>
+                  <span class="admin-counter-label">Total réservations</span>
+                  <span class="admin-counter-num" id="countReservations">0</span>
+                  <span class="admin-muted">réservations effectuées</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== Add / Edit attraction modal ===== -->
+    <div class="modal fade" id="attractionModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content admin-modal">
+          <form id="attractionForm">
+            <div class="modal-header">
+              <h5 class="modal-title" id="attractionModalTitle">Ajouter une attraction</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="attractionId" />
+              <div class="mb-3">
+                <label for="fName" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="fName" required />
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="fRegion" class="form-label">Région</label>
+                  <input type="text" class="form-control" id="fRegion" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="fType" class="form-label">Type</label>
+                  <select class="form-select" id="fType" required>
+                    <option value="Montagne">Montagne</option>
+                    <option value="Désert">Désert</option>
+                    <option value="Culturel">Culturel</option>
+                    <option value="Naturel">Naturel</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="fPrice" class="form-label">Prix (MAD)</label>
+                <input type="number" class="form-control" id="fPrice" min="0" step="1" value="0" />
+              </div>
+              <div class="mb-3">
+                <label for="fImage" class="form-label">Image (chemin, optionnel)</label>
+                <input type="text" class="form-control" id="fImage" placeholder="static/images/village-x.png" />
+              </div>
+              <div class="mb-1">
+                <label for="fDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="fDescription" rows="3" required></textarea>
+              </div>
+              <div id="modalMessage" class="form-message d-none"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+              <button type="submit" class="btn btn-primary-green">Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js for statistics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <!-- jsPDF for PDF export -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+    <!-- Admin script -->
+    <script src="static/js/admin.js"></script>
+  </body>
+</html>
