@@ -7,9 +7,8 @@
 =========================================================== */
 
 // Base URL of the Flask backend. Empty string = same origin.
-const API_BASE = "https://morocco-hidden-gems-94zz.onrender.com";
-fetch(`${API_BASE}/api/villages`)
-fetch(`${API_BASE}/api/reservations`)
+const API_BASE = "";
+
 // Fallback data so the page still works if the backend isn't running.
 const FALLBACK_VILLAGES = [
   {
