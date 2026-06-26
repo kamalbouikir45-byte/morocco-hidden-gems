@@ -104,7 +104,7 @@ def init_db():
                 "Désert",
                 "Découvrez les dunes de l'Erg Chebbi.",
                 400,
-                "static/images/Merzouga.jpg"
+                "static/images/merzouga.jpg"
             ),
 
             (
@@ -113,7 +113,7 @@ def init_db():
                 "Montagne",
                 "Village situé au pied du Toubkal.",
                 180,
-                "static/images/Imlil.jpg"
+                "static/images/imlil.jpg"
             ),
 
             (
