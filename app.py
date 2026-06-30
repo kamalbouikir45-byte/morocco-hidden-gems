@@ -15,7 +15,12 @@ Run:
 """
 
 import os
+import socket
 import sqlite3
+import threading
+import time
+import tkinter as tk
+import webbrowser
 from flask import Flask, jsonify, request, send_from_directory, session
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -912,16 +917,88 @@ def health():
 
 
 # =====================================================
+# Fenêtre de lancement Tkinter (bouton "Réserver")
+# =====================================================
+
+VERT = "#15512f"
+VERT_HOVER = "#1d6b3d"
+CREME = "#faf5e9"
+
+SERVER_PORT = int(os.environ.get("PORT", 5000))
+
+
+def run_flask():
+    """Lance le serveur Flask dans un thread séparé (sans le reloader,
+    incompatible avec un thread secondaire)."""
+    try:
+        app.run(host="0.0.0.0", port=SERVER_PORT, debug=False, use_reloader=False)
+    except OSError as e:
+        print(f"❌ Impossible de démarrer le serveur sur le port {SERVER_PORT} : {e}")
+        print("   (le port est peut-être déjà utilisé par un autre processus)")
+
+
+def serveur_pret(host="127.0.0.1", port=SERVER_PORT, timeout=5):
+    """Attend que le serveur Flask accepte des connexions (max `timeout` s)."""
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        try:
+            with socket.create_connection((host, port), timeout=0.5):
+                return True
+        except OSError:
+            time.sleep(0.2)
+    return False
+
+
+def ouvrir_reservation():
+    """Ouvre la page de réservation du site dans le navigateur."""
+    if not serveur_pret():
+        print("⚠️ Le serveur Flask ne répond pas encore sur le port", SERVER_PORT)
+        return
+    webbrowser.open(f"http://127.0.0.1:{SERVER_PORT}/#reservation")
+
+
+def launch_tkinter_window():
+    root = tk.Tk()
+    root.title("Maroc Authentique")
+    root.configure(bg=CREME)
+    root.geometry("280x140")
+    root.resizable(False, False)
+
+    tk.Label(
+        root,
+        text="Serveur lancé sur le port " + str(SERVER_PORT),
+        bg=CREME,
+        fg=VERT,
+        font=("Calibri", 10),
+    ).pack(pady=(15, 5))
+
+    btn_reserver = tk.Button(
+        root,
+        text="Réserver",
+        command=ouvrir_reservation,
+        bg=VERT,
+        fg="white",
+        activebackground=VERT_HOVER,
+        activeforeground="white",
+        font=("Calibri", 12, "bold"),
+        relief="flat",
+        bd=0,
+        padx=24,
+        pady=10,
+        cursor="hand2",
+    )
+    btn_reserver.pack(expand=True)
+
+    root.mainloop()
+
+
+# =====================================================
 
 if __name__ == "__main__":
 
-    app.run(
+    # Le serveur Flask tourne en arrière-plan ; la fenêtre Tkinter
+    # avec le bouton "Réserver" reste au premier plan.
+    flask_thread = threading.Thread(target=run_flask, daemon=True)
+    flask_thread.start()
 
-        host="0.0.0.0",
-
-        port=int(os.environ.get("PORT", 5000)),
-
-        debug=True
-
-    )
-
+    launch_tkinter_window()
